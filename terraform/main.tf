@@ -10,3 +10,9 @@ module vpc {
     availability_zone_2 = "eu-west-2b"
 
 }
+
+module "iam" {
+    source = "./iam"
+    cluster_role_name = "eks-2048-cluster-role"
+    node_role_name = "eks-2048-node-role"
+}

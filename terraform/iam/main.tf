@@ -19,10 +19,6 @@ resource "aws_iam_role" "node" {
 
 }
 
-resource "aws_iam_role_policy_attachment" "Cluster_Policy" {
-  role       = aws_iam_role.node.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-}
 
 resource "aws_iam_role" "cluster" {
   name = var.cluster_role_name
@@ -46,17 +42,22 @@ resource "aws_iam_role" "cluster" {
 
 }
 
-resource "aws_iam_role_policy_attachment" "Node_Policy" {
+resource "aws_iam_role_policy_attachment" "Cluster_Policy" {
   role       = aws_iam_role.cluster.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+}
+
+resource "aws_iam_role_policy_attachment" "Node_Policy" {
+  role       = aws_iam_role.node.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
 resource "aws_iam_role_policy_attachment" "Read_Only_Policy" {
-  role       = aws_iam_role.cluster.name
+  role       = aws_iam_role.node.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
 resource "aws_iam_role_policy_attachment" "CNI_Policy" {
-  role       = aws_iam_role.cluster.name
+  role       = aws_iam_role.node.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }

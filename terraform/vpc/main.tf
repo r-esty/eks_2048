@@ -11,7 +11,7 @@ resource "aws_subnet" "public_1" {
 
   tags = {
     "Name"                           = "eks-2048-public-1"
-    "kubernetes.io/cluster/eks-2048" = "shared"
+    "kubernetes.io/cluster/eks-2048-cluster" = "shared"
     "kubernetes.io/role/elb"         = "1"
   }
 }
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_2" {
 
   tags = {
     "Name"                           = "eks-2048-public-2"
-    "kubernetes.io/cluster/eks-2048" = "shared"
+    "kubernetes.io/cluster/eks-2048-cluster" = "shared"
     "kubernetes.io/role/elb"         = "1"
   }
 }
@@ -35,7 +35,7 @@ resource "aws_subnet" "private_1" {
 
   tags = {
     "Name"                            = "eks-2048-private-1"
-    "kubernetes.io/cluster/eks-2048"  = "shared"
+    "kubernetes.io/cluster/eks-2048-cluster"  = "shared"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
@@ -47,7 +47,7 @@ resource "aws_subnet" "private_2" {
 
   tags = {
     "Name"                            = "eks-2048-private-2"
-    "kubernetes.io/cluster/eks-2048"  = "shared"
+    "kubernetes.io/cluster/eks-2048-cluster"  = "shared"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }

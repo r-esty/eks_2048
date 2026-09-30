@@ -43,4 +43,13 @@ module "eks" {
   
 }
 
+module "ecr" {
 
+  source = "./ecr"
+  ecr_name = "ecr-eks-2048"
+  scan_on_push = true
+  force_delete = true
+  image_tag_mutability = "MUTABLE"
+
+  
+}

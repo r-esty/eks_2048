@@ -58,6 +58,13 @@ resource "aws_vpc_security_group_ingress_rule" "allow_cluster_ipv4" {
   to_port           = 443
 }
 
+resource "aws_vpc_security_group_ingress_rule" "node_webhook" {
+  security_group_id            = aws_security_group.node.id
+  referenced_security_group_id = aws_security_group.cluster.id
+  from_port                    = 8443
+  ip_protocol                  = "tcp"
+  to_port                      = 8443
+}
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   security_group_id = aws_security_group.cluster.id

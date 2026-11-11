@@ -32,3 +32,8 @@ variable "cluster_node_arn" {
 variable "vpc_id" {
   type = string
 }
+
+variable "external_dns_name" {
+  type    = string
+  default = "external-dns-role"
+}

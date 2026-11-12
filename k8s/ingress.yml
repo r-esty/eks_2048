@@ -2,15 +2,22 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: eks-2048-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - eks.romeoesty.com
+      secretName: myingress-cert
   rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: eks-2048-service
-            port:
-              number: 80
+    - host: eks.romeoesty.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: eks-2048-service
+                port:
+                  number: 80
